@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Student} from '../students/student';
-import {Http} from '@angular/http';
+import {Http,Response} from '@angular/http';
+
 import {StudentsDataService} from './students-data.service';
 
 @Injectable()
@@ -16,6 +17,8 @@ export class StudentsDataServerService {
   }
 
   getStudent(id: number) {
-    return null;
+    let student:Student;
+    return this.http.get('http://localhost:8080/student/'+id)
+      .map(res=>res.json());
   }
 }
